@@ -11,29 +11,32 @@
     <title>Todo List</title>
 </head>
 
-<body>
+<body class="d-flex flex-md-row">
     <div class="container" style="margin-top:20px;">
 
         <div class="card row">
             <div class="card-header">Todo List</div>
             <div class="card-body">
-                <form id="todo-form" name="form">
+                <form id="todo-form" class="col-md-6" name="form">
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <input class="form-control" type="text" name="todo" id="todo" placeholder="Bir Todo Girin">
+                        <div class="form-group col-md-12">
+                            <div> <input class="form-control" type="text" name="todo" id="todo" placeholder="Bir Todo Girin"></div>
+                            <div class="d-flex flex-column mt-2 justify-content-md-between">
+                                <p class="col-md-8 ml-0 p-0">Yapılacak Tarihi giriniz</p>
+                                <input type="date" class="date" name="date" id="date">
+                            </div>
+
                         </div>
                     </div>
                     <button type="submit" class="btn btn-danger">Todo Ekleyin</button>
                 </form>
                 <hr>
 
-
-
             </div>
 
             <div class="card-body">
                 <hr>
-                <h5 class="card-title" id="tasks-title">Todolar</h5>
+                <h5 class="card-title" id="tasks-title ">Todolar</h5>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <input class="form-control" type="text" name="filter" id="filter" placeholder="Bir Todo Arayın">
@@ -41,11 +44,11 @@
                 </div>
 
                 <hr>
-                <ul class="list-group">
-                    <!-- <li class="list-group-item d-flex justify-content-between">
+                <ul class="list-group" id="td">
+                    <!-- <li class="list-group-item d-flex justify-content-between ">
                             Todo 1
-                            <a href = "#" class ="delete-item">
-                                <i class = "fa fa-remove"></i>
+                            <a href = "# " class ="delete-item ">
+                                <i class = "fa fa-remove "></i>
                             </a>
 
                         </li>-->
@@ -53,19 +56,104 @@
 
                 </ul>
                 <hr>
-                <a id="clear-todos" class="btn btn-dark" href="#">Tüm Taskları Temizleyin</a>
+                <a id="clear-todos" class="btn btn-dark" href="# ">Tüm Taskları Temizleyin</a>
             </div>
         </div>
+
+
 
     </div>
 
 
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="todo.js"></script>
+    </div>
+    <div class="container" style="margin-top:20px;">
+
+        <div class="card row">
+            <div class="card-header">Todo List</div>
+            <div class="card-body ">
+                <hr>
+                <h5 class="card-title" id="tasks-title"> Yapılan Todolar</h5>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <input class="form-control" type="text" name="filter1" id="filter1" placeholder="Bir Todo Arayın ">
+                    </div>
+                </div>
+
+                <hr>
+                <ul class="list-group" id="yt">
+
+                    yapılan todolar
+                    <!-- <li class="list-group-item d-flex justify-content-between ">
+                        Todo 1
+                        <a href = "# " class ="delete-item ">
+                            <i class = "fa fa-remove"></i>
+                        </a>
+
+                    </li>-->
+
+
+                </ul>
+                <hr>
+                <a id="clear-todos" class="btn btn-dark" href="# ">Tüm Taskları Temizleyin</a>
+            </div>
+            <hr>
+
+        </div>
+
+        <div class="card-body">
+            <hr>
+            <h5 class="card-title" id="tasks-title">Zamanında Yapılmayanlar</h5>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input class="form-control" type="text " name="filter2" id="filter2" placeholder="Bir Todo Arayın">
+                </div>
+            </div>
+
+            <hr>
+            <ul class="list-group" id="ot">
+                <li class="list-group-item2 d-flex justify-content-between ">
+                    <p>Todo1</p>
+                    <!-- <div class="form-check">
+
+                        <label class="form-check-label">
+                            
+                            <input type="checkbox" class="form-check-input" name="check" id="check" value="checkedValue" >
+                            <p>12/14/2021 14:00 </p>
+                        </label>
+                    </div> -->
+
+                    <a href="# " class="delete-item">
+                        <i class="fa fa-remove"></i>
+                    </a>
+
+                </li>
+
+
+            </ul>
+            <hr>
+            <a id="clear-todos" class="btn btn-dark" href="#">Tüm Taskları Temizleyin</a>
+        </div>
+    </div>
+
+
+
+    </div>
+
+
+
+
+    </div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js " integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN " crossorigin="anonymous "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js " integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q " crossorigin="anonymous "></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js " integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl " crossorigin="anonymous "></script>
+    <script src="todo.js "></script>
 </body>
 
 </html>
