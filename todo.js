@@ -2,7 +2,7 @@ const form = document.getElementById("todo-form");
 const todoInput = document.getElementById("todo");
 const todoList = document.querySelector("#td");
 const todolist2 = document.querySelector("#yt");
-const todolist3 = document.querySelector("#ot");
+const todolist3 = document.getElementById("ot")
 const firsCardBody = document.querySelectorAll(".card-body")[0];
 const secondCardBody = document.querySelectorAll(".card-body")[1];
 const filter = document.getElementById("filter");
@@ -15,6 +15,7 @@ $(document).ready(function() {
 
 
     eventListeners();
+    controlTime();
 
 });
 
@@ -51,12 +52,7 @@ function clearAllTodos() {
 
 }
 
-function transferTodos() {
 
-    console.log("naber");
-
-
-}
 
 function filterTodos(e, id) {
     const filterVAlue = e.target.value.toLowerCase();
@@ -135,11 +131,11 @@ function filterTodos2(e) {
 
 function deleteTodo(e) {
     let name = document.querySelectorAll(".form-check-input");
-    console.log(name);
+
     let check = e.target.id;
 
 
-    if (e.target.className === 'fa fa-remove') {
+    if (e.target.className === 'fa fa-trash-o fa-2x') {
 
         e.target.parentElement.parentElement.remove();
 
@@ -153,12 +149,17 @@ function deleteTodo(e) {
             console.log(check);
             let li = e.target.parentElement.parentElement.parentElement;
             let date = e.target.parentElement.parentElement.parentElement.firstElementChild.textContent;
+            console.log(date);
+
             let todos = e.target.parentElement.parentElement.firstElementChild.textContent;
+            console.log(todos);
             let item = addTodoToUI(todos, date);
+            console.log(item.innerHTML + "  buraya bakarlar");
             li.remove();
+
             addList(todolist2, item);
 
-            console.log(e.target.parentElement.parentElement.parentElement.textContent);
+
             showAlert("success", "Todo  başarıyla aktarıldı");
             addTodoDOToStorage(todos, date);
             deleteTodoFromStorage(e.target.parentElement.parentElement.parentElement.textContent);
@@ -193,16 +194,18 @@ function deleteTodoFromStorage(deletedata) {
     });
 
     localStorage.setItem("todos", JSON.stringify(todos));
-    controlTime();
+
 }
 
 function controlTime() {
     let todos = getTodosFromStorage();
+    console.log(todos);
     var now = new Date();
 
 
 
     todos.forEach(function(todo, index) {
+        console.log(todo + "----" + index);
         let tm = new Date(todo[1]);
 
         if (tm < now) {
@@ -211,6 +214,7 @@ function controlTime() {
 
             let item = addTodoToUI(todo[0], todo[1]);
             addList(todolist3, item);
+            addTodoDosentToStorage(todo[0], todo[1]);
         }
 
 
@@ -232,7 +236,7 @@ function loadAllTodosUI() {
 }
 
 function loadAllOldTodosUI() {
-    let todos = getdontTodosFromStorage();
+    let todos = getdosentTodosFromStorage();
     todos.forEach(function(todo) {
         let item = addTodoToUI(todo[0], todo[1]);
         addList(todolist3, item);
@@ -295,27 +299,39 @@ function addTodoToUI(newTodo, newDate) {
     let list = getAllTodosFromStorage();
 
     let number = list.length;
-    console.log(number);
+
     input.id = "check" + number;
     input.name = "check";
     input.value = "checkedValue";
     p.appendChild(document.createTextNode(newDate));
-
+    p2.className = "col-md-5 pl-0";
 
     label.className = "form-check-label";
+    const ii = document.createElement("span");
+    ii.innerHTML = "<i onclick='complete(this)' class='fa fa-check-circle-o check'></i>"
 
-    div.className = "form-check";
+
+    ii.id = "newC"
+    div.className = "form-check col-md-5";
     label.appendChild(input);
     label.appendChild(p);
     div.appendChild(label);
 
+
     link.href = "#";
-    link.className = "delete-item";
-    link.innerHTML = "<i class = 'fa fa-remove'></i>";
+    link.className = "delete-item col-md-2";
+    link.innerHTML = "<i class = 'fa fa-trash-o fa-2x'></i>";
+
+
     listItem.className = "list-group-item d-flex justify-content-between";
     listItem.appendChild(p2).appendChild(document.createTextNode(newTodo));
+
+
+
     listItem.appendChild(div);
     listItem.appendChild(link);
+
+
 
 
     todoInput.value = "";
@@ -378,18 +394,18 @@ function getDoTodosFromStorage() {
 
 }
 
-function getdontTodosFromStorage() {
-    let dontTodos;
+function getdosentTodosFromStorage() {
+    let dosentTodos;
 
 
-    if (localStorage.getItem("dontTodos") === null) {
-        dontTodos = [];
+    if (localStorage.getItem("dosentTodos") === null) {
+        dosentTodos = [];
 
     } else {
-        dontTodos = JSON.parse(localStorage.getItem("dontTodos"));
+        dosentTodos = JSON.parse(localStorage.getItem("dosentTodos"));
     }
 
-    return dontTodos;
+    return dosentTodos;
 
 }
 
@@ -442,6 +458,19 @@ function addTodoAllToStorage(newTodo, newDate) {
     console.log(todos);
 
     localStorage.setItem("allTodos", JSON.stringify(todos));
+
+
+
+}
+
+function addTodoDosentToStorage(newTodo, newDate) {
+    let t = [newTodo, newDate];
+
+    let todos = getdosentTodosFromStorage();
+    todos.push(t);
+
+
+    localStorage.setItem("dosentTodos", JSON.stringify(todos));
 
 
 
